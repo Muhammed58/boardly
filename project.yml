@@ -14,6 +14,20 @@ settings:
     MARKETING_VERSION: "2.0.0"
     CURRENT_PROJECT_VERSION: "13"
 
+schemes:
+  Boardly:
+    build:
+      targets:
+        Boardly: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
 targets:
   Boardly:
     type: application
