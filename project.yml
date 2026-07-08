@@ -1,0 +1,77 @@
+name: Boardly
+options:
+  bundleIdPrefix: com.muhammedchan
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: "NHR6PP236D"
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "2.0.0"
+    CURRENT_PROJECT_VERSION: "13"
+
+targets:
+  Boardly:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - Sources
+    dependencies:
+      - target: BoardlyShare
+    info:
+      path: Supporting/Info.plist
+      properties:
+        CFBundleDisplayName: "Boardly"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        ITSAppUsesNonExemptEncryption: false
+        NSPhotoLibraryUsageDescription: "Boardly needs access to your photos to import screenshots for editing."
+        NSPhotoLibraryAddUsageDescription: "Boardly needs permission to save your edited screenshots to your photo library."
+        CFBundleURLTypes:
+          - CFBundleURLName: com.muhammedchan.boardly
+            CFBundleURLSchemes:
+              - boardly
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.muhammedchan.boardly
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+        CODE_SIGN_ENTITLEMENTS: Supporting/Boardly.entitlements
+        MARKETING_VERSION: "2.0.0"
+        CURRENT_PROJECT_VERSION: "13"
+
+  BoardlyShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - Share
+      - path: Sources/IO/SharedInbox.swift
+    info:
+      path: Share/Info.plist
+      properties:
+        CFBundleDisplayName: "Boardly"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsImageWithMaxCount: 1
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.muhammedchan.boardly.share
+        CODE_SIGN_ENTITLEMENTS: Share/BoardlyShare.entitlements
+        MARKETING_VERSION: "2.0.0"
+        CURRENT_PROJECT_VERSION: "13"
