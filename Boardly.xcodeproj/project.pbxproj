@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0087A2150F359B088737F3B8 /* BoardlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DBFA8CAB94C680C0E6C9B /* BoardlyUITests.swift */; };
 		03665B474279AA414E9A51E2 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40C8F7852F54E16B749F30B /* Geometry.swift */; };
 		093AA8A50130903CC83745E8 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9B4BF0107349562180814 /* Project.swift */; };
 		0ABE02C59C79CC97C0997D53 /* LibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BE17A31D34FA1C98C9D355 /* LibraryStore.swift */; };
@@ -83,6 +84,13 @@
 			remoteGlobalIDString = AA86F3A5CB57CEEFDD4DA46B;
 			remoteInfo = BoardlyShare;
 		};
+		52222138672AC59002B6F9E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68BECDF4856805D6C86C8A40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D716FE9473D8D4F821CA8A07;
+			remoteInfo = Boardly;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -118,8 +126,10 @@
 		36BE17A31D34FA1C98C9D355 /* LibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStore.swift; sourceTree = "<group>"; };
 		3B8D1220F180FF62B7ABF213 /* SharedInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInbox.swift; sourceTree = "<group>"; };
 		3C42F82D9CBC4909A7F520EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3DF797140C29EC09D2535AF0 /* BoardlyUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BoardlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4229097ADE902CADD9E85D30 /* StylesPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylesPanel.swift; sourceTree = "<group>"; };
 		48F873502B88C7638CF1B333 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		554DBFA8CAB94C680C0E6C9B /* BoardlyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardlyUITests.swift; sourceTree = "<group>"; };
 		58658716B2D28E15E42D2A7D /* CanvasRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRenderer.swift; sourceTree = "<group>"; };
 		58742F1386131DE9D9EC3892 /* FrameRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameRenderer.swift; sourceTree = "<group>"; };
 		59EBD8EE64D9AE89E3E81444 /* PanelKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelKit.swift; sourceTree = "<group>"; };
@@ -227,6 +237,7 @@
 			children = (
 				8744B17BA5560BC136D1A02C /* Share */,
 				E4AB485EBEB3FA5D6454DCEC /* Sources */,
+				EEEA910D643CC13F8C606EB7 /* UITests */,
 				7C02D00860762804A5E9AB8C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -280,6 +291,7 @@
 			children = (
 				290E9520DCE5ABE5F3527409 /* Boardly.app */,
 				EF0E995A53D888B3D3679124 /* BoardlyShare.appex */,
+				3DF797140C29EC09D2535AF0 /* BoardlyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -349,9 +361,35 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		EEEA910D643CC13F8C606EB7 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				554DBFA8CAB94C680C0E6C9B /* BoardlyUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		37D976552C5CA1ED805585D5 /* BoardlyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9685DFAF0C4E1AB5DDB00F86 /* Build configuration list for PBXNativeTarget "BoardlyUITests" */;
+			buildPhases = (
+				012FFDE380DC8D780EC2EE40 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4AFECD37BBE0E3AF1857EA9 /* PBXTargetDependency */,
+			);
+			name = BoardlyUITests;
+			packageProductDependencies = (
+			);
+			productName = BoardlyUITests;
+			productReference = 3DF797140C29EC09D2535AF0 /* BoardlyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AA86F3A5CB57CEEFDD4DA46B /* BoardlyShare */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59BDBAD9D6EE2F877C8A66E7 /* Build configuration list for PBXNativeTarget "BoardlyShare" */;
@@ -398,6 +436,11 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					37D976552C5CA1ED805585D5 = {
+						DevelopmentTeam = NHR6PP236D;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D716FE9473D8D4F821CA8A07;
+					};
 					AA86F3A5CB57CEEFDD4DA46B = {
 						DevelopmentTeam = NHR6PP236D;
 						ProvisioningStyle = Automatic;
@@ -424,6 +467,7 @@
 			targets = (
 				D716FE9473D8D4F821CA8A07 /* Boardly */,
 				AA86F3A5CB57CEEFDD4DA46B /* BoardlyShare */,
+				37D976552C5CA1ED805585D5 /* BoardlyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -440,6 +484,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		012FFDE380DC8D780EC2EE40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0087A2150F359B088737F3B8 /* BoardlyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0162A84AF67F9C7B5BCBC215 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,6 +577,11 @@
 			isa = PBXTargetDependency;
 			target = AA86F3A5CB57CEEFDD4DA46B /* BoardlyShare */;
 			targetProxy = 337783427B8655881B55D199 /* PBXContainerItemProxy */;
+		};
+		B4AFECD37BBE0E3AF1857EA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D716FE9473D8D4F821CA8A07 /* Boardly */;
+			targetProxy = 52222138672AC59002B6F9E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -716,6 +773,42 @@
 			};
 			name = Debug;
 		};
+		8DB221F006E229B88F916246 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedchan.boardly.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Boardly;
+			};
+			name = Debug;
+		};
+		A08C3478F8ED46F7B8831D49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.muhammedchan.boardly.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Boardly;
+			};
+			name = Release;
+		};
 		C273641B7E0DFD01F4BF346D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -755,6 +848,15 @@
 			buildConfigurations = (
 				791A4F9CD27EAC45C651746F /* Debug */,
 				C273641B7E0DFD01F4BF346D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9685DFAF0C4E1AB5DDB00F86 /* Build configuration list for PBXNativeTarget "BoardlyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB221F006E229B88F916246 /* Debug */,
+				A08C3478F8ED46F7B8831D49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

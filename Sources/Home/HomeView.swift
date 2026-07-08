@@ -44,7 +44,7 @@ struct HomeView: View {
         .sheet(isPresented: $showAppStore) {
             AppStoreSetupView { project in
                 showAppStore = false
-                openProject = project
+                openEditor(project)
             }
         }
         .sheet(isPresented: $showSettings) { SettingsView() }
@@ -209,7 +209,27 @@ struct HomeView: View {
     private func present(_ image: UIImage) {
         let normalized = image.normalizedUp()
         let id = ImageStore.shared.save(normalized)
-        openProject = Project.new(imageID: id, imageSize: normalized.size, now: Date())
+        openEditor(Project.new(imageID: id, imageSize: normalized.size, now: Date()))
+    }
+
+    /// Present the editor only after any other modal (photo picker, studio
+    /// sheet…) has fully dismissed. Presenting the fullScreenCover while a
+    /// modal is still tearing down attaches it to the dying presentation
+    /// context and the editor loses its safe-area insets (top bar renders
+    /// behind the status bar, tool bar behind the home indicator).
+    private func openEditor(_ project: Project) {
+        Task { @MainActor in
+            var waited = 0
+            while waited < 3000,
+                  let root = UIApplication.shared.connectedScenes
+                      .compactMap({ ($0 as? UIWindowScene)?.keyWindow?.rootViewController })
+                      .first,
+                  root.presentedViewController != nil {
+                try? await Task.sleep(for: .milliseconds(50))
+                waited += 50
+            }
+            openProject = project
+        }
     }
 
     private func importLatest() {

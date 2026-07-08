@@ -21,6 +21,10 @@ schemes:
         Boardly: all
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - BoardlyUITests
     profile:
       config: Release
     analyze:
@@ -63,6 +67,20 @@ targets:
         CODE_SIGN_ENTITLEMENTS: Supporting/Boardly.entitlements
         MARKETING_VERSION: "2.0.0"
         CURRENT_PROJECT_VERSION: "13"
+
+  BoardlyUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - UITests
+    dependencies:
+      - target: Boardly
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.muhammedchan.boardly.uitests
+        TEST_TARGET_NAME: Boardly
 
   BoardlyShare:
     type: app-extension

@@ -45,6 +45,7 @@ struct EditorView: View {
             Button { save(); dismiss() } label: {
                 Image(systemName: "chevron.left").font(.system(size: 17, weight: .semibold))
             }
+            .accessibilityIdentifier("editor.back")
             Spacer()
             Button { model.duplicateCurrentPage() } label: { Image(systemName: "plus.rectangle.on.rectangle") }
             Button { model.undo() } label: { Image(systemName: "arrow.uturn.backward") }
@@ -82,6 +83,7 @@ struct EditorView: View {
                             in: RoundedRectangle(cornerRadius: 12, style: .continuous)
                         )
                     }
+                    .accessibilityIdentifier("tool.\(tool.rawValue)")
                 }
             }
             .padding(.horizontal, Theme.Space.sm)
