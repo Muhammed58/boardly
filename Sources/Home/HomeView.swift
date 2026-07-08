@@ -275,21 +275,23 @@ private struct ProjectTile: View {
     var body: some View {
         Button(action: onOpen) {
             VStack(alignment: .leading, spacing: 8) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous)
-                        .fill(Theme.surfaceSunk)
-                    if let thumbnail {
-                        Image(uiImage: thumbnail)
-                            .resizable()
-                            .scaledToFill()
-                    } else {
-                        Image(systemName: "photo")
-                            .font(.system(size: 28))
-                            .foregroundStyle(Theme.inkTertiary)
+                RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous)
+                    .fill(Theme.surfaceSunk)
+                    .frame(height: 150)
+                    .overlay {
+                        // Overlay so the fill-cropped image can't inflate the
+                        // tile beyond its grid column.
+                        if let thumbnail {
+                            Image(uiImage: thumbnail)
+                                .resizable()
+                                .scaledToFill()
+                        } else {
+                            Image(systemName: "photo")
+                                .font(.system(size: 28))
+                                .foregroundStyle(Theme.inkTertiary)
+                        }
                     }
-                }
-                .frame(height: 150)
-                .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous)
                         .strokeBorder(Theme.separator, lineWidth: 1)

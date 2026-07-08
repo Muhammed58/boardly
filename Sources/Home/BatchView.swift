@@ -33,8 +33,10 @@ struct BatchView: View {
                         }
                         LazyVGrid(columns: grid, spacing: 10) {
                             ForEach(Array(images.enumerated()), id: \.offset) { _, image in
-                                Image(uiImage: image).resizable().scaledToFill()
-                                    .frame(height: 120).clipShape(RoundedRectangle(cornerRadius: 10))
+                                Color.clear
+                                    .frame(height: 120)
+                                    .overlay { Image(uiImage: image).resizable().scaledToFill() }
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         }
                         VStack(spacing: 10) {
