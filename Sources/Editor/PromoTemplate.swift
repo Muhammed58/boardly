@@ -1,7 +1,7 @@
 import CoreGraphics
 import Foundation
 
-/// Placement + styling of a text layer in an App Store template.
+/// Placement + styling of a text layer in an promo template.
 struct TextSpec {
     var center: CGPoint
     var boxSize: CGSize
@@ -28,9 +28,9 @@ struct TextSpec {
     }
 }
 
-/// A ready-to-use App Store screenshot layout — background + device placement +
+/// A ready-to-use promo screenshot layout — background + device placement +
 /// headline (and optional subtitle). Applied per page across a set.
-struct AppStoreTemplate: Identifiable {
+struct PromoTemplate: Identifiable {
     let id: String
     let name: String
     let aspect: CanvasAspect
@@ -62,17 +62,17 @@ struct AppStoreTemplate: Identifiable {
     }
 }
 
-enum AppStoreTemplates {
+enum PromoTemplates {
     private static func hex(_ s: String) -> RGBAColor { RGBAColor(hex: s) ?? .black }
-    private static let as67 = CanvasAspect.appStore67
+    private static let as67 = CanvasAspect.promo67
 
     private static let starterHeadlines = [
         "Everything you need", "Beautifully simple", "Ready in seconds", "Made for you", "Get started today",
     ]
 
-    static let all: [AppStoreTemplate] = [
+    static let all: [PromoTemplate] = [
         // Classic: dark headline over light, device below.
-        AppStoreTemplate(id: "spotlight", name: "Spotlight", aspect: as67,
+        PromoTemplate(id: "spotlight", name: "Spotlight", aspect: as67,
             background: .solid(hex("#F3F4F7")), frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.64), deviceSize: CGSize(width: 0.86, height: 0.66),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -83,7 +83,7 @@ enum AppStoreTemplates {
             starters: starterHeadlines),
 
         // Bold white headline on a vivid gradient.
-        AppStoreTemplate(id: "bold", name: "Bold", aspect: as67,
+        PromoTemplate(id: "bold", name: "Bold", aspect: as67,
             background: BackgroundPresets.gradients[0].style, frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.66), deviceSize: CGSize(width: 0.84, height: 0.62),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -92,7 +92,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // 3-D tilted device on mesh.
-        AppStoreTemplate(id: "tilt", name: "Tilt", aspect: as67,
+        PromoTemplate(id: "tilt", name: "Tilt", aspect: as67,
             background: BackgroundPresets.meshes[0].style, frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.63), deviceSize: CGSize(width: 0.9, height: 0.64),
             tiltX: 0.08, tiltY: 0.16, cleanStatusBar: .dark,
@@ -101,7 +101,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Gradient-filled headline on lagoon mesh.
-        AppStoreTemplate(id: "pop", name: "Pop", aspect: as67,
+        PromoTemplate(id: "pop", name: "Pop", aspect: as67,
             background: BackgroundPresets.meshes[2].style, frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.65), deviceSize: CGSize(width: 0.84, height: 0.62),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -110,7 +110,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Dark mode.
-        AppStoreTemplate(id: "dark", name: "Dark", aspect: as67,
+        PromoTemplate(id: "dark", name: "Dark", aspect: as67,
             background: .solid(hex("#0B1020")), frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.64), deviceSize: CGSize(width: 0.86, height: 0.64),
             tiltX: 0, tiltY: 0, cleanStatusBar: .light,
@@ -121,7 +121,7 @@ enum AppStoreTemplates {
             starters: starterHeadlines),
 
         // Device peeking from the bottom, big headline on top.
-        AppStoreTemplate(id: "peek", name: "Peek", aspect: as67,
+        PromoTemplate(id: "peek", name: "Peek", aspect: as67,
             background: BackgroundPresets.gradients[1].style, frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.82), deviceSize: CGSize(width: 0.88, height: 0.74),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -130,7 +130,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Minimal frameless with soft shadow.
-        AppStoreTemplate(id: "minimal", name: "Minimal", aspect: as67,
+        PromoTemplate(id: "minimal", name: "Minimal", aspect: as67,
             background: .solid(hex("#FAFAFB")), frame: .none, shadow: .medium, cornerRadius: 0.06,
             deviceCenter: CGPoint(x: 0.5, y: 0.62), deviceSize: CGSize(width: 0.78, height: 0.62),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -139,7 +139,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Marker-highlighted headline.
-        AppStoreTemplate(id: "marker", name: "Marker", aspect: as67,
+        PromoTemplate(id: "marker", name: "Marker", aspect: as67,
             background: .solid(hex("#FFF6E9")), frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.65), deviceSize: CGSize(width: 0.84, height: 0.62),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -149,7 +149,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Browser frame for web / Mac apps.
-        AppStoreTemplate(id: "browser", name: "Browser", aspect: as67,
+        PromoTemplate(id: "browser", name: "Browser", aspect: as67,
             background: BackgroundPresets.gradients[4].style, frame: .browserLight, shadow: .strong, cornerRadius: 0.03,
             deviceCenter: CGPoint(x: 0.5, y: 0.56), deviceSize: CGSize(width: 0.9, height: 0.5),
             tiltX: 0, tiltY: 0, cleanStatusBar: nil,
@@ -158,7 +158,7 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
 
         // Pattern duotone.
-        AppStoreTemplate(id: "duotone", name: "Duotone", aspect: as67,
+        PromoTemplate(id: "duotone", name: "Duotone", aspect: as67,
             background: .pattern(.dots, hex("#B9C0FF"), hex("#EEF0FF")), frame: .iphone, shadow: .strong, cornerRadius: 0.05,
             deviceCenter: CGPoint(x: 0.5, y: 0.65), deviceSize: CGSize(width: 0.84, height: 0.62),
             tiltX: 0, tiltY: 0, cleanStatusBar: .dark,
@@ -167,10 +167,10 @@ enum AppStoreTemplates {
             subtitle: nil, starters: starterHeadlines),
     ]
 
-    static func template(_ id: String) -> AppStoreTemplate { all.first { $0.id == id } ?? all[0] }
+    static func template(_ id: String) -> PromoTemplate { all.first { $0.id == id } ?? all[0] }
 
     /// Build a multi-page project: one page per image, cycling starter headlines.
-    static func generateSet(name: String, template: AppStoreTemplate, imageIDs: [String], now: Date) -> Project {
+    static func generateSet(name: String, template: PromoTemplate, imageIDs: [String], now: Date) -> Project {
         let ids = imageIDs.isEmpty ? [] : imageIDs
         let pages = ids.enumerated().map { index, id in
             template.buildPage(imageID: id, headline: template.starters[index % template.starters.count])

@@ -1,7 +1,7 @@
 import SwiftUI
 import PhotosUI
 
-/// Page switcher for multi-page projects (App Store sets). Shown when a project
+/// Page switcher for multi-page projects (promo sets). Shown when a project
 /// has more than one page.
 struct PageBar: View {
     let model: EditorModel

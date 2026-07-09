@@ -11,7 +11,7 @@ struct HomeView: View {
     @State private var importError: String?
     @State private var latestShot: UIImage?
     @State private var showBatch = false
-    @State private var showAppStore = false
+    @State private var showPromoStudio = false
     @State private var showSettings = false
     @AppStorage("appTheme") private var appThemeRaw = AppTheme.system.rawValue
 
@@ -41,9 +41,9 @@ struct HomeView: View {
         }
         .onChange(of: photoItem) { _, item in importPhoto(item) }
         .fullScreenCover(isPresented: $showBatch) { BatchView() }
-        .sheet(isPresented: $showAppStore) {
-            AppStoreSetupView { project in
-                showAppStore = false
+        .sheet(isPresented: $showPromoStudio) {
+            PromoStudioView { project in
+                showPromoStudio = false
                 openEditor(project)
             }
         }
@@ -59,9 +59,9 @@ struct HomeView: View {
             if openProject == nil, let demo {
                 let image = SampleScreenshot.make().normalizedUp()
                 let id = ImageStore.shared.save(image)
-                if demo == "appstore" {
+                if demo == "promo" {
                     let ids = [id, ImageStore.shared.save(SampleScreenshot.make()), ImageStore.shared.save(SampleScreenshot.make())]
-                    openProject = AppStoreTemplates.generateSet(name: "App Store", template: AppStoreTemplates.template("bold"), imageIDs: ids, now: Date())
+                    openProject = PromoTemplates.generateSet(name: "Promo Set", template: PromoTemplates.template("bold"), imageIDs: ids, now: Date())
                 } else {
                     openProject = DemoShowcase.project(imageID: id, imageSize: image.size)
                 }
@@ -115,8 +115,8 @@ struct HomeView: View {
                 secondaryButton("Batch", systemImage: "square.stack.3d.up") { showBatch = true }
                 secondaryButton("Try a sample", systemImage: "wand.and.stars") { present(SampleScreenshot.make()) }
             }
-            Button { showAppStore = true } label: {
-                Label("App Store Studio", systemImage: "app.badge.checkmark")
+            Button { showPromoStudio = true } label: {
+                Label("Promo Studio", systemImage: "app.badge.checkmark")
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity).padding(.vertical, 13)

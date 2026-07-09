@@ -1,17 +1,17 @@
 import SwiftUI
 
-/// Output size / aspect ratio for social + App Store, grouped by use.
+/// Output size / aspect ratio for social + store listings, grouped by use.
 struct CropPanel: View {
     let model: EditorModel
     @State private var showCrop = false
     @State private var straighten: Double = 0
-    @State private var appStoreThumbs: [String: UIImage] = [:]
+    @State private var promoThumbs: [String: UIImage] = [:]
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 imageTools
-                appStoreSection
+                promoSection
 
                 ForEach(CanvasAspect.groups, id: \.self) { group in
                     VStack(alignment: .leading, spacing: 6) {
@@ -38,12 +38,12 @@ struct CropPanel: View {
                 }
             }
         }
-        .task(id: model.screenshotID) { buildAppStoreThumbs() }
+        .task(id: model.screenshotID) { buildPromoThumbs() }
     }
 
-    @ViewBuilder private var appStoreSection: some View {
+    @ViewBuilder private var promoSection: some View {
         HStack {
-            Text("APP STORE TEMPLATES").font(.system(size: 10, weight: .bold)).foregroundStyle(Theme.inkTertiary)
+            Text("PROMO TEMPLATES").font(.system(size: 10, weight: .bold)).foregroundStyle(Theme.inkTertiary)
             Spacer()
             if model.pageCount > 1 {
                 Button { model.syncAllPages() } label: {
@@ -56,12 +56,12 @@ struct CropPanel: View {
 
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(AppStoreTemplates.all) { template in
+                ForEach(PromoTemplates.all) { template in
                     Button { model.applyTemplateToCurrentPage(template) } label: {
                         VStack(spacing: 4) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous).fill(Theme.surfaceSunk)
-                                if let img = appStoreThumbs[template.id] { Image(uiImage: img).resizable().scaledToFit() }
+                                if let img = promoThumbs[template.id] { Image(uiImage: img).resizable().scaledToFit() }
                             }
                             .frame(width: 52, height: 80)
                             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
@@ -76,15 +76,15 @@ struct CropPanel: View {
         }
     }
 
-    private func buildAppStoreThumbs() {
+    private func buildPromoThumbs() {
         guard let imageID = model.screenshotContent?.imageID else { return }
         let h: CGFloat = 160
         var out: [String: UIImage] = [:]
-        for template in AppStoreTemplates.all {
+        for template in PromoTemplates.all {
             let canvas = template.buildPage(imageID: imageID, headline: template.starters[0])
             out[template.id] = CanvasRenderer.shared.render(canvas, pixelSize: CGSize(width: h * canvas.aspect.ratio, height: h), quality: .preview)
         }
-        appStoreThumbs = out
+        promoThumbs = out
     }
 
     private var imageTools: some View {
@@ -140,10 +140,10 @@ struct CropPanel: View {
         return r >= 1 ? CGSize(width: maxDim, height: maxDim / r) : CGSize(width: maxDim * r, height: maxDim)
     }
 
-    /// One-tap App Store shot: tall canvas, framed screenshot, headline text.
-    private func applyAppStoreTemplate() {
+    /// One-tap promo shot: tall canvas, framed screenshot, headline text.
+    private func applyPromoTemplate() {
         model.edit { canvas in
-            canvas.aspect = .appStore67
+            canvas.aspect = .promo67
             if let id = canvas.primaryScreenshot?.id, var layer = canvas[id],
                case .screenshot(var s) = layer.content {
                 s.frame = .iphone

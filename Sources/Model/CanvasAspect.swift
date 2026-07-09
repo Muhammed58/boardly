@@ -23,20 +23,20 @@ struct CanvasAspect: Codable, Equatable, Hashable, Identifiable {
     static let twitter     = CanvasAspect(id: "twitter",  name: "X Post",        group: "Social", width: 1600, height: 900,  symbol: "at")
     static let pinterest   = CanvasAspect(id: "pin",      name: "Pin 2:3",       group: "Social", width: 1000, height: 1500, symbol: "pin")
 
-    static let appStore67  = CanvasAspect(id: "as67",     name: "iPhone 6.7\"",  group: "App Store", width: 1290, height: 2796, symbol: "iphone")
-    static let appStore65  = CanvasAspect(id: "as65",     name: "iPhone 6.5\"",  group: "App Store", width: 1242, height: 2688, symbol: "iphone")
-    static let appStore55  = CanvasAspect(id: "as55",     name: "iPhone 5.5\"",  group: "App Store", width: 1242, height: 2208, symbol: "iphone")
-    static let appStoreiPad = CanvasAspect(id: "asipad",  name: "iPad 12.9\"",   group: "App Store", width: 2048, height: 2732, symbol: "ipad")
+    static let promo67  = CanvasAspect(id: "as67",     name: "iPhone 6.7\"",  group: "Promo", width: 1290, height: 2796, symbol: "iphone")
+    static let promo65  = CanvasAspect(id: "as65",     name: "iPhone 6.5\"",  group: "Promo", width: 1242, height: 2688, symbol: "iphone")
+    static let promo55  = CanvasAspect(id: "as55",     name: "iPhone 5.5\"",  group: "Promo", width: 1242, height: 2208, symbol: "iphone")
+    static let promoiPad = CanvasAspect(id: "asipad",  name: "iPad 12.9\"",   group: "Promo", width: 2048, height: 2732, symbol: "ipad")
 
     static let original    = CanvasAspect(id: "original", name: "Original",      group: "Basic",  width: 1170, height: 2532, symbol: "photo")
     static let free        = CanvasAspect(id: "free",     name: "Freeform",      group: "Basic",  width: 1170, height: 2532, symbol: "crop")
 
     static let all: [CanvasAspect] = [
         .original, .square, .portrait45, .story, .landscape, .ogImage, .twitter, .pinterest,
-        .appStore67, .appStore65, .appStore55, .appStoreiPad
+        .promo67, .promo65, .promo55, .promoiPad
     ]
 
-    static let groups: [String] = ["Basic", "Social", "App Store"]
+    static let groups: [String] = ["Basic", "Social", "Promo"]
 
     /// A canvas sized to wrap `source` with `paddingFraction` breathing room,
     /// used when a screenshot is imported with the "Original" aspect.

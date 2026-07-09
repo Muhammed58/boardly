@@ -10,7 +10,7 @@ struct Project: Identifiable, Codable, Equatable {
     var modifiedAt: Date
     /// The active page (also page 0 / the thumbnail source for backward compat).
     var canvas: EditorCanvas
-    /// All pages (App Store sets). Optional so pre-multipage projects still decode;
+    /// All pages (promo sets). Optional so pre-multipage projects still decode;
     /// nil means a single page equal to `canvas`.
     var pages: [EditorCanvas]? = nil
 

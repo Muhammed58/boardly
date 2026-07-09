@@ -78,5 +78,5 @@ the App Group entitlement. Requires a signed build to exercise on device.
 
 Bottom bar tools (`EditorTool`): Background · Frame · Text · Draw · Redact ·
 Spotlight · Sticker · Crop · Layers. "Frame" also hosts Remove Background
-(subject lift); "Crop" hosts aspect presets + the one-tap App Store template;
+(subject lift); "Crop" hosts aspect presets + the one-tap promo template;
 "Layers" hosts collage (add more screenshot layers).

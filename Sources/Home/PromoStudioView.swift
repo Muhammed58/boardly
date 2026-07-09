@@ -1,16 +1,16 @@
 import SwiftUI
 import PhotosUI
 
-/// "App Store Studio" — pick a template, add screenshots, and generate a
+/// "Promo Studio" — pick a template, add screenshots, and generate a
 /// consistent multi-page set ready to customize.
-struct AppStoreSetupView: View {
+struct PromoStudioView: View {
     let onGenerate: (Project) -> Void
     @Environment(\.dismiss) private var dismiss
 
     @State private var items: [PhotosPickerItem] = []
     @State private var importedIDs: [String] = []
     @State private var importedThumbs: [UIImage] = []
-    @State private var templateID = AppStoreTemplates.all[0].id
+    @State private var templateID = PromoTemplates.all[0].id
     @State private var templateThumbs: [String: UIImage] = [:]
     @State private var placeholderID: String?
 
@@ -53,7 +53,7 @@ struct AppStoreSetupView: View {
                 .padding(.vertical, 16)
             }
             .background(Theme.background.ignoresSafeArea())
-            .navigationTitle("App Store Studio")
+            .navigationTitle("Promo Studio")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarLeading) { Button("Cancel") { dismiss() } } }
         }
@@ -69,7 +69,7 @@ struct AppStoreSetupView: View {
     private var templateGallery: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                ForEach(AppStoreTemplates.all) { template in
+                ForEach(PromoTemplates.all) { template in
                     Button { templateID = template.id } label: {
                         VStack(spacing: 6) {
                             ZStack {
@@ -92,7 +92,7 @@ struct AppStoreSetupView: View {
         }
     }
 
-    private var selected: AppStoreTemplate { AppStoreTemplates.template(templateID) }
+    private var selected: PromoTemplate { PromoTemplates.template(templateID) }
     private var pageCount: Int { importedIDs.isEmpty ? 3 : importedIDs.count }
     private var importLabel: String { importedIDs.isEmpty ? "Choose screenshots" : "Change (\(importedIDs.count))" }
 
@@ -105,7 +105,7 @@ struct AppStoreSetupView: View {
         guard let placeholderID else { return }
         let h: CGFloat = 300
         var out: [String: UIImage] = [:]
-        for template in AppStoreTemplates.all {
+        for template in PromoTemplates.all {
             let canvas = template.buildPage(imageID: importedIDs.first ?? placeholderID, headline: template.starters[0])
             let px = CGSize(width: h * canvas.aspect.ratio, height: h)
             out[template.id] = CanvasRenderer.shared.render(canvas, pixelSize: px, quality: .preview)
@@ -130,7 +130,7 @@ struct AppStoreSetupView: View {
 
     private func generate() {
         let ids = importedIDs.isEmpty ? Array(repeating: placeholderID ?? ImageStore.shared.save(SampleScreenshot.make()), count: 3) : importedIDs
-        onGenerate(AppStoreTemplates.generateSet(name: "App Store", template: selected, imageIDs: ids, now: Date()))
+        onGenerate(PromoTemplates.generateSet(name: "Promo Set", template: selected, imageIDs: ids, now: Date()))
         dismiss()
     }
 }

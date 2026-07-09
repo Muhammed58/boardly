@@ -85,7 +85,7 @@ extension EditorModel {
         }
     }
 
-    // MARK: App Store templates
+    // MARK: promo templates
 
     var currentHeadlineString: String? {
         for layer in project.canvas.layers { if case .text(let t) = layer.content { return t.string } }
@@ -93,7 +93,7 @@ extension EditorModel {
     }
 
     /// Rebuild the current page from a template, keeping the screenshot + headline text.
-    func applyTemplateToCurrentPage(_ template: AppStoreTemplate) {
+    func applyTemplateToCurrentPage(_ template: PromoTemplate) {
         guard let imageID = screenshotContent?.imageID else { return }
         let headline = currentHeadlineString ?? template.starters[0]
         let canvas = template.buildPage(imageID: imageID, headline: headline)
